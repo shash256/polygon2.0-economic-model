@@ -41,15 +41,15 @@ polygn_staked_per_validator: np.ndarray = (
 polygn_staked: POLYGN = (
     sum(polygn_staked_per_validator)
 )
-number_of_active_validators: int = 100
+number_of_active_validators: int = 100 #120
 polygn_supply: POLYGN = (
-    etherscan.get_polygn_supply(default=10_000_000_000e18) / constants.wei
+    1_000_000_000e18 / constants.wei #etherscan.get_polygn_supply(default=10_000_000_000e18) / constants.wei
 )
 sampling_polygn_staked_per_validator: np.ndarray = (
     np.random.poisson(5, number_of_active_validators)
 )
 polygn_staked_per_validator, polygn_staked = validator_staking.force_staking_ratio(
-    polygn_staked_per_validator, polygn_supply,staking_ratio = 0.3
+    polygn_staked_per_validator, polygn_supply,staking_ratio = 0.35 #0.3
 )
 
 # Network state variables
@@ -108,7 +108,7 @@ class HubState:
         )
 
     # Inflation
-    supply_inflation: Percentage = 0 
+    supply_inflation: Percentage = 4 #8 #0 
     """The annualized POLYGN supply inflation rate"""
     network_issuance: POLYGN = 0
     """The total network issuance in POLYGN"""
@@ -125,7 +125,7 @@ class HubState:
     total_inflation_to_validators_normal_usd: USD = 0
     total_inflation_to_validators_deviate: Gwei = 0
     total_inflation_to_validators_deviate_usd: USD = 0
-    total_inflation_to_validators_yields: Percentage = 0
+    total_inflation_to_validators_yields: Percentage = 8 #0
     total_inflation_to_validators_normal_yields: Percentage = 0
     total_inflation_to_validators_deviate_yields: Percentage = 0
 
@@ -171,7 +171,7 @@ class HubState:
     validator_count_distribution: np.ndarray = np.zeros(
         (number_of_validator_environments, 1), dtype=int
     )
-    validator_hardware_costs: USD = 0
+    validator_hardware_costs: USD = 10000 #0
     """The total validator hardware operation costs per validator environment"""
     validator_hardware_costs_yields: Percentage = 0
     """The total validator hardware operation costs per validator environment"""
@@ -201,9 +201,9 @@ class HubState:
     total_profit_yields: Percentage = 0
     """Annualized profit (income received - costs) for all validators"""
 
-    domain_treasury_balance_unlocked: Gwei = 0
+    domain_treasury_balance_unlocked: Gwei = 200_000_000 * constants.gwei #0
     """The total unlocked treasury balance"""
-    domain_treasury_balance_locked: Gwei = 2_000_000_000 * constants.gwei
+    domain_treasury_balance_locked: Gwei = 200_000_000 * constants.gwei #2_000_000_000
     """
     The total locked treasury balance. Initial fund is 2B POLYGN.
     """
