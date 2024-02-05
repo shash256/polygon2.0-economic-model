@@ -43,7 +43,7 @@ polygn_staked: POLYGN = (
 )
 number_of_active_validators: int = 100 #120
 polygn_supply: POLYGN = (
-    1_000_000_000e18 / constants.wei #etherscan.get_polygn_supply(default=10_000_000_000e18) / constants.wei
+    21_000_000_000e18 / constants.wei #etherscan.get_polygn_supply(default=10_000_000_000e18) / constants.wei
 )
 sampling_polygn_staked_per_validator: np.ndarray = (
     np.random.poisson(5, number_of_active_validators)
@@ -93,7 +93,7 @@ class HubState:
     PRIVATE_CHAINS_CNT: int = PRIVATE_CHAINS_CNT
 
     # POLYGN state variables
-    polygn_price: USD_per_POLYGN = 1.0
+    polygn_price: USD_per_POLYGN = 0.01 #1.0
     polygn_supply: POLYGN = polygn_supply
     polygn_staked: POLYGN = polygn_staked
 
@@ -125,7 +125,7 @@ class HubState:
     total_inflation_to_validators_normal_usd: USD = 0
     total_inflation_to_validators_deviate: Gwei = 0
     total_inflation_to_validators_deviate_usd: USD = 0
-    total_inflation_to_validators_yields: Percentage = 8 #0
+    total_inflation_to_validators_yields: Percentage = 2 #0
     total_inflation_to_validators_normal_yields: Percentage = 0
     total_inflation_to_validators_deviate_yields: Percentage = 0
 
@@ -201,9 +201,9 @@ class HubState:
     total_profit_yields: Percentage = 0
     """Annualized profit (income received - costs) for all validators"""
 
-    domain_treasury_balance_unlocked: Gwei = 200_000_000 * constants.gwei #0
+    domain_treasury_balance_unlocked: Gwei = 1_890_000_000 * constants.gwei #0
     """The total unlocked treasury balance"""
-    domain_treasury_balance_locked: Gwei = 200_000_000 * constants.gwei #2_000_000_000
+    domain_treasury_balance_locked: Gwei = 0 * constants.gwei #2_000_000_000
     """
     The total locked treasury balance. Initial fund is 2B POLYGN.
     """
